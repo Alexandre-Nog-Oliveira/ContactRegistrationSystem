@@ -1,7 +1,10 @@
-﻿
+﻿$(document).ready(function () {
+    getDatatable('#tableContatos')
+    getDatatable('#tableUsuario')
+});
 
-$(document).ready(function () {
-    $('#tableContatos').DataTable({
+function getDatatable(id) {
+    $(id).DataTable({
         "ordering": true,
         "paging": true,
         "searching": true,
@@ -29,7 +32,7 @@ $(document).ready(function () {
             }
         }
     });
-});
+}
 
 $('.close-alert').click(function () {
     $('.alert').hide('hide');
