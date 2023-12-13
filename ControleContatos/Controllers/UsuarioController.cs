@@ -32,6 +32,36 @@ namespace ControleContatos.Controllers
             return View(usuario);
         }
 
+        public IActionResult Excluir(int id)
+        {
+            UsuarioModel usuario = _usuarioRepositorio.BuscarPorId(id);
+            return View(usuario);
+        }
+
+        public IActionResult Deletar(int id)
+        {
+            try
+            {
+                bool deletar = _usuarioRepositorio.Deletar(id);
+                if (deletar)
+                {
+                    TempData["MensagemSucesso"] = $"Usuário deletado com sucesso.";
+                }
+                else
+                {
+                    TempData["MensagemErro"] = $"Ops, Ocorreu um erro ao delete o contato, tente novamente.";
+                }
+
+                return RedirectToAction("Index");
+
+            }
+            catch (Exception)
+            {
+                TempData["MensagemErro"] = $"Ops, Ocorreu um erro ao delete o contato, tente novamente.";
+                return RedirectToAction("Index");
+            }
+        }
+
         // Post
         [HttpPost]
         public IActionResult Criar(UsuarioModel usuario)
