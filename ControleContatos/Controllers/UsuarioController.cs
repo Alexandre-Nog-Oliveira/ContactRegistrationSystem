@@ -14,18 +14,23 @@ namespace ControleContatos.Controllers
         {
             _usuarioRepositorio = usuarioRepositorio;
         }
+
         public IActionResult Index()
         {
             List<UsuarioModel> usuarios = _usuarioRepositorio.BuscarTodos();
             return View(usuarios);
         }
+
         public IActionResult Criar()
         {
             return View();
         }
 
-
-
+        public IActionResult Editar(int id)
+        {
+            UsuarioModel usuario = _usuarioRepositorio.BuscarPorId(id);
+            return View(usuario);
+        }
 
         // Post
         [HttpPost]
@@ -45,6 +50,27 @@ namespace ControleContatos.Controllers
             catch (Exception erro)
             {
                 TempData["MensagemErro"] = $"Ops, Ocorreu um erro ao cadastrar usuário, tente novamente. Erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult EditarUsuario(UsuarioModel usuario)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _usuarioRepositorio.Atualizar(usuario);
+                    TempData["MensagemSucesso"] = $"Contato {usuario.Nome} editado com sucesso";
+                    return RedirectToAction("Index");
+                }
+
+                return View("Editar", usuario);
+            }
+            catch (Exception erro)
+            {
+                TempData["MensagemErro"] = $"Ops, Ocorreu um erro ao editar o contato, tente novamente. Erro: {erro.Message}";
                 return RedirectToAction("Index");
             }
         }
