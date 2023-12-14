@@ -85,14 +85,25 @@ namespace ControleContatos.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditarUsuario(UsuarioModel usuario)
+        public IActionResult EditarUsuario(UsuarioAtualizarModel usuarioAtualizar)
         {
             try
             {
+                UsuarioModel usuario = null;
+
                 if (ModelState.IsValid)
                 {
+                    usuario = new UsuarioModel()
+                    {
+                        Id = usuarioAtualizar.Id,
+                        Nome = usuarioAtualizar.Nome,
+                        Email = usuarioAtualizar.Email,
+                        Login = usuarioAtualizar.Login,
+                        Perfil = usuarioAtualizar.Perfil,
+                    };
+
                     _usuarioRepositorio.Atualizar(usuario);
-                    TempData["MensagemSucesso"] = $"Contato {usuario.Nome} editado com sucesso";
+                    TempData["MensagemSucesso"] = $"Usuário {usuario.Nome} editado com sucesso";
                     return RedirectToAction("Index");
                 }
 
