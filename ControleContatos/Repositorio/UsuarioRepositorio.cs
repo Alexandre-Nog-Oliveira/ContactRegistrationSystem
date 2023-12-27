@@ -16,6 +16,11 @@ namespace ControleContatos.Repositorio
             _dbContext = dbContext;
         }
 
+        public UsuarioModel BuscarPorLogin(string login)
+        {
+            return _dbContext.Usuarios.FirstOrDefault(c => c.Login.ToUpper() == login.ToUpper());
+        }
+
         public UsuarioModel BuscarPorId(int id)
         {
             return _dbContext.Usuarios.FirstOrDefault(c => c.Id == id);

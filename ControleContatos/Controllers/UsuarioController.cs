@@ -26,6 +26,27 @@ namespace ControleContatos.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Criar(UsuarioModel usuario)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    usuario = _usuarioRepositorio.Adicionar(usuario);
+                    TempData["MensagemSucesso"] = $"Usuário {usuario.Login} cadastrado com sucesso";
+                    return RedirectToAction("Index");
+                }
+
+                return View(usuario);
+            }
+            catch (Exception erro)
+            {
+                TempData["MensagemErro"] = $"Ops, Ocorreu um erro ao cadastrar usuário, tente novamente. Erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+
         public IActionResult Editar(int id)
         {
             UsuarioModel usuario = _usuarioRepositorio.BuscarPorId(id);
@@ -62,27 +83,14 @@ namespace ControleContatos.Controllers
             }
         }
 
-        // Post
-        [HttpPost]
-        public IActionResult Criar(UsuarioModel usuario)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                   usuario = _usuarioRepositorio.Adicionar(usuario);
-                    TempData["MensagemSucesso"] = $"Usuário {usuario.Login} cadastrado com sucesso";
-                    return RedirectToAction("Index");
-                }
 
-                return View(usuario);
-            }
-            catch (Exception erro)
-            {
-                TempData["MensagemErro"] = $"Ops, Ocorreu um erro ao cadastrar usuário, tente novamente. Erro: {erro.Message}";
-                return RedirectToAction("Index");
-            }
-        }
+
+
+
+
+
+        // Post
+
 
         [HttpPost]
         public IActionResult EditarUsuario(UsuarioAtualizarModel usuarioAtualizar)

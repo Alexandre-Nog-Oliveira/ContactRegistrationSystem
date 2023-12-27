@@ -1,7 +1,6 @@
-﻿@using ControleContatos.Enums;
-@model UsuarioModel
+﻿@model UsuarioModel
 @{
-    ViewData["Title"] = "Criar de usuário";
+    ViewData["Title"] = "Criar de Usuário";
 }
 
 <div class="text-center">
@@ -9,6 +8,7 @@
 </div>
 
 <form asp-controller="Usuario" asp-action="Criar" method="post" >
+
     <div class="form-group">
         <label for="Nome">Nome</label>
         <input type="text" asp-for="Nome" class="form-control" placeholder="Informe o nome do usuário">
@@ -23,26 +23,25 @@
 
     <div class="form-group">
         <label for="nome">Login</label>
-        <input type="text" asp-for="Login" class="form-control" placeholder="Informe o login do usuário">
+        <input type="text" asp-for="Login" class="form-control" placeholder="Informe o Login do usuário">
         @Html.ValidationMessageFor(x => x.Login)
     </div>
 
     <div class="form-group">
         <label for="nome">Perfil</label>
-        <select class="form-control">
-            <option value="">Selecione</option>
-            <option value="@PerfilEnum.Admin" >Administrador</option>
-            <option value="@PerfilEnum.Padrao">Padrão</option>
-            @Html.ValidationMessageFor(x => x.Perfil)
+        <select asp-for="Perfil" class="form-control">
+            <option value="0">Selecione</option>
+            <option value="@ControleContatos.Enums.PerfilEnum.Admin">Administrador</option>
+            <option value="@ControleContatos.Enums.PerfilEnum.Padrao">Padrão</option>
         </select>
     </div>
 
     <div class="form-group">
         <label for="nome">Senha</label>
-        <input type="password" asp-for="Senha" class="form-control" placeholder="Informe a Senha do usuário">
+        <input type="text" asp-for="Senha" class="form-control" placeholder="Informe a senha do usuário">
         @Html.ValidationMessageFor(x => x.Senha)
     </div>
 
     <button type="submit" class="btn btn-primary">Cadastrar</button>
-    <a role="button" class="btn btn-secondary" asp-controller="Usuario" asp-action="Index">Voltar</a>
+    <a role="button" class="btn btn-secondary" asp-controller="Contato" asp-action="Index">Voltar</a>
 </form>
