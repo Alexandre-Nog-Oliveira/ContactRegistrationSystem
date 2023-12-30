@@ -32,9 +32,11 @@ namespace ControleContatos
             services.AddEntityFrameworkSqlServer()
                 .AddDbContext<BancoContext>(c => c.UseSqlServer(Configuration.GetConnectionString("Database")));
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
             services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
-            services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<ISessao, Sessao>();
 
             services.AddSession(o =>
