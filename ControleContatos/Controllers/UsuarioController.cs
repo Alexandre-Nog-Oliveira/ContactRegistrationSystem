@@ -1,4 +1,5 @@
-﻿using ControleContatos.Interface;
+﻿using ControleContatos.Filters;
+using ControleContatos.Interface;
 using ControleContatos.Models;
 using ControleContatos.Repositorio;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,8 @@ using System.Collections.Generic;
 
 namespace ControleContatos.Controllers
 {
+    [PaginaParaAdmin]
+
     public class UsuarioController : Controller
     {
         IUsuarioRepositorio _usuarioRepositorio;

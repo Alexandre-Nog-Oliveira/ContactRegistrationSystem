@@ -1,4 +1,5 @@
-﻿using ControleContatos.Models;
+﻿using ControleContatos.Filters;
+using ControleContatos.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ControleContatos.Controllers
 {
+    [PaginaParaUsuarioLogado]
     public class HomeController : Controller
     {
 

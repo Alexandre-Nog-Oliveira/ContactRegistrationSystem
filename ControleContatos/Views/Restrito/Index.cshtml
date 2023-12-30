@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "_LayoutDeslogado";
+    ViewData["Title"] = "Página Restrita";
+}
+
+<div class="jumbotron">
+    <h1 class="display-4">Acesso Negado!</h1>
+    <p class="lead">Você não tem permissão para acessar essa funcionalidade</p>
+    <hr class="my-4">
+    <p>Clique no botão para voltar.</p>
+    <a class="btn btn-primary btn-lg" asp-controller="Home", asp-action="Index" role="button">Home</a>
+</div>
