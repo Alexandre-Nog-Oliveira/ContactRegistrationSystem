@@ -1,8 +1,10 @@
 using ControleContatos.Data;
+using ControleContatos.Helper;
 using ControleContatos.Interface;
 using ControleContatos.Repositorio;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +33,15 @@ namespace ControleContatos
                 .AddDbContext<BancoContext>(c => c.UseSqlServer(Configuration.GetConnectionString("Database")));
 
             services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
-            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>(); 
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+            services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<ISessao, Sessao>();
+
+            services.AddSession(o =>
+            {
+                o.Cookie.HttpOnly = true;
+                o.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +60,8 @@ namespace ControleContatos
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
