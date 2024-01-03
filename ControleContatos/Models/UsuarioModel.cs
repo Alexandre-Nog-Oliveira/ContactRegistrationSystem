@@ -35,7 +35,7 @@ namespace ControleContatos.Models
 
         public bool senhaValida(string senha)
         {
-            return Senha == senha;
+            return Senha == senha.GerarHash();
         }
     }
 }
