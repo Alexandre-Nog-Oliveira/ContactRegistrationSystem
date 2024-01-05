@@ -20,6 +20,10 @@ namespace ControleContatos.Repositorio
         {
             return _dbContext.Usuarios.FirstOrDefault(c => c.Login.ToUpper() == login.ToUpper());
         }
+        public UsuarioModel BuscarPorEmailLogin(string login, string email)
+        {
+            return _dbContext.Usuarios.FirstOrDefault(c => c.Email.ToUpper() == email.ToUpper() && c.Login.ToUpper() == login.ToUpper());
+        }
 
         public UsuarioModel BuscarPorId(int id)
         {
