@@ -86,15 +86,7 @@ namespace ControleContatos.Controllers
             }
         }
 
-
-
-
-
-
-
         // Post
-
-
         [HttpPost]
         public IActionResult EditarUsuario(UsuarioAtualizarModel usuarioAtualizar)
         {

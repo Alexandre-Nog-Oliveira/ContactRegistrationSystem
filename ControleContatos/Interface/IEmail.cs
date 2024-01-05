@@ -1,4 +1,4 @@
-﻿namespace ControleContatos.Helper
+﻿namespace ControleContatos.Interface
 {
     public interface IEmail
     {
