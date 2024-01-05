@@ -55,6 +55,7 @@ namespace ControleContatos.Repositorio
             usuarioDB.Email = usuario.Email;
             usuarioDB.Login = usuario.Login;
             usuarioDB.Perfil = usuario.Perfil;
+            usuarioDB.Senha = usuario.Senha;
             usuarioDB.DataAtualizacao = DateTime.Now;
             
 

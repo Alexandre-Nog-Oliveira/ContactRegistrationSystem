@@ -77,6 +77,8 @@ namespace ControleContatos.Controllers
 
                     if (usuario != null)
                     {
+                        string novaSenha = usuario.SenhaRedefinida();
+                        _usuarioRepositorio.Atualizar(usuario);
                         TempData["MensagemSucesso"] = $"Enviamos para seu email cadastrado uma nova senha.";
                         return RedirectToAction("Index", "Login");
                     }
