@@ -11,6 +11,7 @@ namespace ControleContatos.Interface
         List<UsuarioModel> BuscarTodos();
         UsuarioModel Adicionar(UsuarioModel usuario);
         UsuarioModel Atualizar(UsuarioModel usuario);
+        UsuarioModel AtualizarSenhaRedefinir(UsuarioModel usuario);
         bool Deletar(int id);
     }
 }

@@ -55,9 +55,28 @@ namespace ControleContatos.Repositorio
             usuarioDB.Email = usuario.Email;
             usuarioDB.Login = usuario.Login;
             usuarioDB.Perfil = usuario.Perfil;
-            usuarioDB.Senha = usuario.Senha;
             usuarioDB.DataAtualizacao = DateTime.Now;
             
+
+            _dbContext.Usuarios.Update(usuarioDB);
+            _dbContext.SaveChanges();
+            return usuarioDB;
+        }
+
+        public UsuarioModel AtualizarSenhaRedefinir(UsuarioModel usuario)
+        {
+            UsuarioModel usuarioDB = BuscarPorId(usuario.Id);
+
+            if (usuarioDB == null)
+                throw new Exception("Houver um erro ao editar usuário");
+
+            usuarioDB.Nome = usuario.Nome;
+            usuarioDB.Email = usuario.Email;
+            usuarioDB.Login = usuario.Login;
+            usuarioDB.Perfil = usuario.Perfil;
+            usuarioDB.Senha = usuario.Senha;
+            usuarioDB.DataAtualizacao = DateTime.Now;
+
 
             _dbContext.Usuarios.Update(usuarioDB);
             _dbContext.SaveChanges();
@@ -75,5 +94,7 @@ namespace ControleContatos.Repositorio
             _dbContext.SaveChanges();
             return true;
         }
+
+        
     }
 }

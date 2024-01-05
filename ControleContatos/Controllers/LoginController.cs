@@ -87,7 +87,7 @@ namespace ControleContatos.Controllers
 
                         if (emailEnviado)
                         {
-                            _usuarioRepositorio.Atualizar(usuario);
+                            _usuarioRepositorio.AtualizarSenhaRedefinir(usuario);
                             TempData["MensagemSucesso"] = $"Enviamos para seu email cadastrado uma nova senha.";
                         }
                         else
